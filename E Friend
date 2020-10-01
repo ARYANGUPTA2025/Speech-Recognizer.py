@@ -1,0 +1,57 @@
+import pyttsx3
+import datetime
+import speech_recognition as sr
+import sklearn
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+engine.setProperty('voices', voices[0].id)
+
+def Say(a):
+    # pyttsx3.speak(a)
+    engine.say(a)
+    engine.runAndWait()
+
+def wishme():
+    hour = int(datetime.datetime.now().hour)
+
+    if hour>=4 and hour<12:
+        Say("Good Morning")
+    
+    elif hour==12:
+        Say("Good Noon ")
+    
+    elif hour>12 and hour<16:
+        Say("Good After Nooon")
+    
+    elif hour>=16 and hour<20:
+        Say("Good Evening")
+    
+    else:
+        Say("Good Night , My Babes")
+
+def takecmd():
+    # To take vouice input & convert it into Text String
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print(" Listening... ")
+        r.pause_threshold = 0.5
+        # r.energy_threshold = 150
+        audio = r.listen(source)
+
+        try:
+            print("Recognizing...")
+            query = r.recognize_google(audio, language='en-in')
+            print(f"User said : {query}\n")
+        
+        except Exception as e:
+            print(e)
+            print(" Say that again Please")
+
+if __name__ == "__main__":
+    # Say("Hello")
+    wishme()
+    Say("Love u My Baby")
+
+    takecmd()
