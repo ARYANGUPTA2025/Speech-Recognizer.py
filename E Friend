@@ -31,13 +31,15 @@ def wishme():
         Say("Good Night , My Babes")
 
 def takecmd():
-    # To take vouice input & convert it into Text String
+    '''
+    To take vouice input & convert it into Text String
+    '''
 
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print(" Listening... ")
         r.pause_threshold = 0.5
-        # r.energy_threshold = 150
+        r.energy_threshold = 300
         audio = r.listen(source)
 
         try:
@@ -50,8 +52,6 @@ def takecmd():
             print(" Say that again Please")
 
 if __name__ == "__main__":
-    # Say("Hello")
     wishme()
     Say("Love u My Baby")
-
     takecmd()
