@@ -1,14 +1,12 @@
 import pyttsx3
 import datetime
 import speech_recognition as sr
-import sklearn
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[0].id)
 
 def Say(a):
-    # pyttsx3.speak(a)
     engine.say(a)
     engine.runAndWait()
 
@@ -50,7 +48,6 @@ def takecmd():
             print(" Say that again Please")
 
 if __name__ == "__main__":
-    # Say("Hello")
     wishme()
     Say("Love u My Baby")
 
